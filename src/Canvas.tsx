@@ -125,6 +125,27 @@ const Canvas = ({ width, height }: CanvasProps) => {
         context.clearRect(0, 0, canvas.width, canvas.height);
     };
 
+    const writeText = (point: Coordinate, text: string) => {
+        const ctx = canvasRef.current?.getContext('2d');
+        if (!ctx) {
+            return;
+        }
+
+        const fontSize = 20;
+        const fontFamily = 'Arial';
+        const color = 'black';
+        const textAlign = 'left';
+        const textBaseline = 'top';
+
+        ctx.beginPath();
+        ctx.font = fontSize + 'px ' + fontFamily;
+        ctx.textAlign = textAlign;
+        ctx.textBaseline = textBaseline;
+        ctx.fillStyle = color;
+        ctx.fillText(text, point.x, point.y);
+        ctx.stroke();
+      }
+
     return <canvas ref={canvasRef} height={height} width={width} />;
 };
 
