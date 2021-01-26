@@ -44,23 +44,22 @@ const Canvas = ({ width, height }: CanvasProps) => {
         };
     }, [startPaint]);
 
-    const paint = useCallback(
-        (event: MouseEvent) => {
-            if (isPainting) {
-                const currentPosition = getCoordinates(event);
-                if (lineBegin && currentPosition) {
-                    resetCanvas();
-                    drawLine(lineBegin, currentPosition);
-                    const text =
-                        `height: ${Math.abs(lineBegin.y - currentPosition.y)}px\n` + 
-                        `width: ${Math.abs(lineBegin.x - currentPosition.x)}`
-                    const middle = getLineMiddle(lineBegin, currentPosition);
-                    writeText(middle, text);
-                }
-            }
-        },
-        [isPainting, lineBegin]
-    );
+    const paint = useCallback((event: MouseEvent) => {
+        if (!isPainting) {
+            return;
+        }
+        const currentPosition = getCoordinates(event);
+        if (!lineBegin || !currentPosition) {
+            return;
+        }
+        resetCanvas();
+        drawLine(lineBegin, currentPosition);
+        const text =
+            `height: ${Math.abs(lineBegin.y - currentPosition.y)}px\n` +
+            `width: ${Math.abs(lineBegin.x - currentPosition.x)}`
+        const middle = getLineMiddle(lineBegin, currentPosition);
+        writeText(middle, text);
+    }, [isPainting, lineBegin]);
 
     useEffect(() => {
         if (!canvasRef.current) {
