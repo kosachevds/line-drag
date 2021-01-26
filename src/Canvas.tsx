@@ -105,6 +105,19 @@ const Canvas = ({ width, height }: CanvasProps) => {
         }
     };
 
+    const resetCanvas = () => {
+        if (!canvasRef.current) {
+            return;
+        }
+        const canvas: HTMLCanvasElement = canvasRef.current;
+        const context = canvas.getContext('2d');
+        if (!context) {
+            return;
+        }
+
+        context.clearRect(0, 0, canvas.width, canvas.height);
+    };
+
     return <canvas ref={canvasRef} height={height} width={width} />;
 };
 
