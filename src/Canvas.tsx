@@ -13,6 +13,13 @@ type Coordinate = {
     y: number;
 };
 
+const getLineMiddle = (begin: Coordinate, end: Coordinate): Coordinate => {
+    return {
+        x: (begin.x + end.x) / 2,
+        y: (begin.y + end.y) / 2,
+    };
+};
+
 const Canvas = ({ width, height }: CanvasProps) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [isPainting, setPainting] = useState(false);
