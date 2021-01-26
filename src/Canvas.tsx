@@ -14,12 +14,10 @@ const Canvas = ({ width, height }: CanvasProps) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [isPainting, setPainting] = useState(false);
     const [startPosition, setStartPosition] = useState<Coordinate | undefined>(undefined);
-    const [mousePosition, setMousePosition] = useState<Coordinate | undefined>(undefined);
 
     const startPaint = useCallback((event: MouseEvent) => {
         const coordinates = getCoordinates(event);
         if (coordinates) {
-            setMousePosition(coordinates);
             setPainting(true);
             setStartPosition(coordinates);
         }
@@ -43,7 +41,6 @@ const Canvas = ({ width, height }: CanvasProps) => {
                 if (startPosition && newMousePosition) {
                     resetCanvas();
                     drawLine(startPosition, newMousePosition);
-                    setMousePosition(newMousePosition);
                 }
             }
         },
@@ -63,7 +60,6 @@ const Canvas = ({ width, height }: CanvasProps) => {
 
     const exitPaint = useCallback(() => {
         setPainting(false);
-        setMousePosition(undefined);
         setStartPosition(undefined);
     }, []);
 
