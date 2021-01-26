@@ -137,7 +137,7 @@ const Canvas = ({ width, height }: CanvasProps) => {
 
         const fontSize = 20;
         const fontFamily = 'Arial';
-        const color = 'black';
+        const color = LINE_COLOR;
         const textAlign = 'left';
         const textBaseline = 'top';
 
