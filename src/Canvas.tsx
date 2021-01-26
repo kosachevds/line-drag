@@ -1,5 +1,8 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
+const LINE_WIDTH = 5;
+const LINE_COLOR = "red";
+
 interface CanvasProps {
     width: number;
     height: number;
@@ -90,9 +93,9 @@ const Canvas = ({ width, height }: CanvasProps) => {
         if (!context) {
             return;
         }
-        context.strokeStyle = 'red';
+        context.strokeStyle = LINE_COLOR;
         context.lineJoin = 'round';
-        context.lineWidth = 5;
+        context.lineWidth = LINE_WIDTH;
 
         context.beginPath();
         context.moveTo(originalMousePosition.x, originalMousePosition.y);
