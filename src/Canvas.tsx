@@ -51,6 +51,11 @@ const Canvas = ({ width, height }: CanvasProps) => {
                 if (lineBegin && currentPosition) {
                     resetCanvas();
                     drawLine(lineBegin, currentPosition);
+                    const text =
+                        `height: ${Math.abs(lineBegin.y - currentPosition.y)}px\n` + 
+                        `width: ${Math.abs(lineBegin.x - currentPosition.x)}`
+                    const middle = getLineMiddle(lineBegin, currentPosition);
+                    writeText(middle, text);
                 }
             }
         },
