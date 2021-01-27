@@ -6,6 +6,10 @@ const LINE_COLOR = "red";
 interface CanvasProps {
     width: number;
     height: number;
+    widthCoefficient: number;
+    heightCoefficient: number;
+    widthUnit: string;
+    heightUnit: string;
 }
 
 type Coordinate = {
@@ -156,6 +160,10 @@ const Canvas = (props: CanvasProps) => {
 Canvas.defaultProps = {
     width: window.innerWidth,
     height: window.innerHeight,
+    widthCoefficient: 1,
+    heightCoefficient: 1,
+    widthUnit: "px",
+    heightUnit: "px",
 };
 
 export default Canvas;
