@@ -20,7 +20,7 @@ const getLineMiddle = (begin: Coordinate, end: Coordinate): Coordinate => {
     };
 };
 
-const Canvas = ({ width, height }: CanvasProps) => {
+const Canvas = (props: CanvasProps) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [isPainting, setPainting] = useState(false);
     const [lineBegin, setLineBegin] = useState<Coordinate | undefined>(undefined);
@@ -150,7 +150,7 @@ const Canvas = ({ width, height }: CanvasProps) => {
         ctx.stroke();
       }
 
-    return <canvas ref={canvasRef} height={height} width={width} />;
+    return <canvas ref={canvasRef} height={props.height} width={props.width} />;
 };
 
 Canvas.defaultProps = {
