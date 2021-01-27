@@ -32,7 +32,7 @@ const getLineMiddle = ({begin, end }: Line): Coordinate => {
 const getMeasuresText = (props: CanvasProps, line: Line) => {
     const height = Math.abs(line.begin.y - line.end.y) * props.heightCoefficient;
     const width = Math.abs(line.begin.x - line.end.x) * props.widthCoefficient;
-    return `height: ${height} ${props.heightUnit}, width: ${width} ${props.widthUnit}`
+    return `height: ${height.toFixed(2)} ${props.heightUnit}, width: ${width.toFixed(2)} ${props.widthUnit}`
 }
 
 const Canvas = (props: CanvasProps) => {
