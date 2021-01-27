@@ -8,12 +8,12 @@ const MM_PER_MV = 10;
 const MM_PER_SEC = 25;
 const MV_PER_PX = MM_PER_PX / MM_PER_MV;
 const SEC_PER_PX = MM_PER_PX / MM_PER_SEC;
+
 enum Units {
     Centimeters = "cm",
     Millivolts = "mV",
     Seconds = "sec",
 }
-
 
 function App() {
     return (
