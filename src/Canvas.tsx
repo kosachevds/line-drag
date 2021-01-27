@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
-const LINE_WIDTH = 5;
+const LINE_WIDTH = 2;
 const LINE_COLOR = "red";
 
 interface CanvasProps {
