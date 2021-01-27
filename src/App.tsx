@@ -1,5 +1,5 @@
 import React from 'react';
-import Measurer from './Canvas';
+import Measurer from './Measurer';
 import './styles.css';
 import recordPage from "./images/recordPage.png"
 
