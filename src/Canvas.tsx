@@ -29,6 +29,12 @@ const getLineMiddle = ({begin, end }: Line): Coordinate => {
     };
 };
 
+const getMeasuresText = (props: CanvasProps, line: Line) => {
+    const height = Math.abs(line.begin.y - line.end.y) * props.heightCoefficient;
+    const width = Math.abs(line.begin.x - line.end.x) * props.widthCoefficient;
+    return `height: ${height} ${props.heightUnit}, width: ${width} ${props.widthUnit}`
+}
+
 const Canvas = (props: CanvasProps) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [isPainting, setPainting] = useState(false);
@@ -64,12 +70,10 @@ const Canvas = (props: CanvasProps) => {
         resetCanvas();
         const line: Line = { begin: lineBegin, end: currentPosition }
         drawLine(line);
-        const text =
-            `height: ${Math.abs(lineBegin.y - currentPosition.y)} px, ` +
-            `width: ${Math.abs(lineBegin.x - currentPosition.x)} px`
+        const text = getMeasuresText(props, line)
         const middle = getLineMiddle(line);
         writeText(middle, text);
-    }, [isPainting, lineBegin]);
+    }, [isPainting, lineBegin, props]);
 
     useEffect(() => {
         if (!canvasRef.current) {
