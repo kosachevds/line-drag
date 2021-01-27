@@ -17,6 +17,11 @@ type Coordinate = {
     y: number;
 };
 
+type Line = {
+    begin: Coordinate;
+    end: Coordinate;
+}
+
 const getLineMiddle = (begin: Coordinate, end: Coordinate): Coordinate => {
     return {
         x: (begin.x + end.x) / 2,
@@ -57,7 +62,7 @@ const Canvas = (props: CanvasProps) => {
             return;
         }
         resetCanvas();
-        drawLine(lineBegin, currentPosition);
+        drawLine({ begin: lineBegin, end: currentPosition });
         const text =
             `height: ${Math.abs(lineBegin.y - currentPosition.y)} px` +
             `width: ${Math.abs(lineBegin.x - currentPosition.x)} px`
@@ -103,7 +108,7 @@ const Canvas = (props: CanvasProps) => {
         return { x: event.pageX - canvas.offsetLeft, y: event.pageY - canvas.offsetTop };
     };
 
-    const drawLine = (originalMousePosition: Coordinate, newMousePosition: Coordinate) => {
+    const drawLine = ({ begin, end }: Line) => {
         const context = canvasRef.current?.getContext('2d');
         if (!context) {
             return;
@@ -113,8 +118,8 @@ const Canvas = (props: CanvasProps) => {
         context.lineWidth = LINE_WIDTH;
 
         context.beginPath();
-        context.moveTo(originalMousePosition.x, originalMousePosition.y);
-        context.lineTo(newMousePosition.x, newMousePosition.y);
+        context.moveTo(begin.x, begin.y);
+        context.lineTo(end.x, end.y);
         context.closePath();
 
         context.stroke();
