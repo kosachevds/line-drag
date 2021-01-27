@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 const LINE_WIDTH = 2;
-const LINE_COLOR = "red";
+const LINE_COLOR = "#35857b";
 
 interface CanvasProps {
     width: number;
