@@ -1,5 +1,5 @@
 import React from 'react';
-import Canvas from './Canvas';
+import Measurer from './Canvas';
 import './styles.css';
 import recordPage from "./images/recordPage.png"
 
@@ -18,7 +18,7 @@ enum Units {
 function App() {
     return (
         <div className="App" style={{backgroundImage: `url(${recordPage})`}}>
-            <Canvas
+            <Measurer
                 widthCoefficient={SEC_PER_PX}
                 heightCoefficient={MV_PER_PX}
                 widthUnit={Units.Seconds}

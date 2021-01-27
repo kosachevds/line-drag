@@ -1,9 +1,9 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 const LINE_WIDTH = 2;
 const LINE_COLOR = "#35857b";
 
-interface CanvasProps {
+interface MeasurerProps {
     width: number;
     height: number;
     widthCoefficient: number;
@@ -29,13 +29,13 @@ const getLineMiddle = ({begin, end }: Line): Coordinate => {
     };
 };
 
-const getMeasuresText = (props: CanvasProps, line: Line) => {
+const getMeasuresText = (props: MeasurerProps, line: Line) => {
     const height = Math.abs(line.begin.y - line.end.y) * props.heightCoefficient;
     const width = Math.abs(line.begin.x - line.end.x) * props.widthCoefficient;
     return `height: ${height.toFixed(2)} ${props.heightUnit}, width: ${width.toFixed(2)} ${props.widthUnit}`
 }
 
-const Canvas = (props: CanvasProps) => {
+const Measurer = (props: MeasurerProps) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [isPainting, setPainting] = useState(false);
     const [lineBegin, setLineBegin] = useState<Coordinate | undefined>(undefined);
@@ -167,7 +167,7 @@ const Canvas = (props: CanvasProps) => {
     return <canvas ref={canvasRef} height={props.height} width={props.width} />;
 };
 
-Canvas.defaultProps = {
+Measurer.defaultProps = {
     width: window.innerWidth,
     height: window.innerHeight,
     widthCoefficient: 1,
@@ -176,4 +176,4 @@ Canvas.defaultProps = {
     heightUnit: "px",
 };
 
-export default Canvas;
+export default Measurer;
