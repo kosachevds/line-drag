@@ -64,7 +64,7 @@ const Canvas = (props: CanvasProps) => {
         resetCanvas();
         drawLine({ begin: lineBegin, end: currentPosition });
         const text =
-            `height: ${Math.abs(lineBegin.y - currentPosition.y)} px` +
+            `height: ${Math.abs(lineBegin.y - currentPosition.y)} px, ` +
             `width: ${Math.abs(lineBegin.x - currentPosition.x)} px`
         const middle = getLineMiddle(lineBegin, currentPosition);
         writeText(middle, text);
