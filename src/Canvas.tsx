@@ -22,7 +22,7 @@ type Line = {
     end: Coordinate;
 }
 
-const getLineMiddle = (begin: Coordinate, end: Coordinate): Coordinate => {
+const getLineMiddle = ({begin, end }: Line): Coordinate => {
     return {
         x: (begin.x + end.x) / 2,
         y: (begin.y + end.y) / 2,
@@ -62,11 +62,12 @@ const Canvas = (props: CanvasProps) => {
             return;
         }
         resetCanvas();
-        drawLine({ begin: lineBegin, end: currentPosition });
+        const line: Line = { begin: lineBegin, end: currentPosition }
+        drawLine(line);
         const text =
             `height: ${Math.abs(lineBegin.y - currentPosition.y)} px, ` +
             `width: ${Math.abs(lineBegin.x - currentPosition.x)} px`
-        const middle = getLineMiddle(lineBegin, currentPosition);
+        const middle = getLineMiddle(line);
         writeText(middle, text);
     }, [isPainting, lineBegin]);
 
